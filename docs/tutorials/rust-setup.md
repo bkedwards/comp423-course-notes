@@ -9,17 +9,17 @@
 (A) Open your terminal or command prompt
 
 (B) Create a new directory for your project. (Note: Of course, if you'd like to organize this tutorial somewhere else on your machine, go ahead and change into that parent directory first. By default this will be in your user's home directory.):
-```
+```sh
 mkdir rust-tutorial
 cd rust-tutorial
 ```
 (C) Initialize a new Git repository
-```
+```sh
 git init
 ```
 
 (D) Create a README file:
-```
+```sh
 echo "# COMP 423 Rust Tutorial" > README.md
 git add README.md
 git commit -m "Initial commit with README"
@@ -42,7 +42,7 @@ git commit -m "Initial commit with README"
 
 ### Step 3. Link your Local Repository to GitHub
 (1) Add the Github repository as a remote
-```
+```sh
 git remote add origin https://github.com/<your-username>/rust-tutorial.git
 ```
 Replace `<your-username` with your GitHub username
@@ -50,7 +50,7 @@ Replace `<your-username` with your GitHub username
 (2) Check your default branch name with the subcommand `git branch`. If it's not `main`, rename it to `main` with the following command: `git branch -M main`. Old versions of `git` choose the name `master` for the primary branch, but these days `main` is the standard primary branch name.
 
 (3) Push your local commits to the GitHub repository
-```
+```sh
 git push --set-upstream origin main
 ```
 //Insert admonition about the --set-upstream Flag//
@@ -78,7 +78,7 @@ The `devcontainer.json` file defines the configuration for your development envi
 
 * **postCreateCommand:** A command to run after the container is created. In our case, there is nothing to be run after.
 
-```
+```json
 {
 "name": "Rust Tutorial"
 "image": "mcr.microsoft.com/devcontainers/rust:latest"
@@ -103,7 +103,7 @@ Once your dev container setup completes, close the current terminal tab (trash c
 [Cargo](https://doc.rust-lang.org/book/ch01-03-hello-cargo.html) is the build system and package manager for the Rust language, and is employed by most developers to manage their Rust projects.
 
 (1) To start a new package with Cargo, use the `cargo new` command to create a binary project:
-```
+```sh
 cargo new hello_cargo_COMP423 --vcs none
 cd hello_cargo_COMP423
 ```
@@ -113,29 +113,30 @@ cd hello_cargo_COMP423
 Go into the `hello_cargo_COMP423` directory and list all the files (`ls -la`). You’ll see that Cargo has generated two files and one directory for us: a `Cargo.toml` file and a `src` directory with a `main.rs` file inside.
 
 (3) Open `src/main.rs` and take a look:
-```
+```rs
 fn main() { println!("Hello, world!"); }
 ```
 Change the text to the following:
-```
+```rs
 fn main() { println!("Hello COMP423!"); }
 ```
 (4) Go back to the terminal, and compile the [binary crate](https://doc.rust-lang.org/book/ch07-01-packages-and-crates.html) using
-```
+```sh
 $ cargo build
 	Compiling hello_world v0.1.0 (file:///path/to/package/hello_world)
 ```
 And then run it using
-```
-$./target/debug/hello_cargo 
+```sh
+$ ./target/debug/hello_cargo 
 # or .\target\debug\hello_cargo.exe on Windows Hello, world!
 ```
 (5) Alternatively, you can also use `cargo run` to compile the code and run the resultant executable all in one command:
-```
-cargo run 
+```sh
+$ cargo run 
 Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs Running `target/debug/hello_cargo` 
 Hello COMP423!
 ```
 //Insert an admonition about how `cargo run` is similar to `cargo build` but is more convenient than having to remember to run `cargo build` and then execute the whole path of the binary. Most Rust developers prefer to use `cargo run`. //
 
-There you go! You have succesfully run a simple Hello World program in the Rust language by setting up a Dev Container!
+##Conclusion
+Congratulations! You’ve successfully created a simple Hello World program in the Rust language and configured a development environment. These are important foundational skills that can be applied to many open-source and professional projects, and can help kick-start your illustrious Rust career! 
