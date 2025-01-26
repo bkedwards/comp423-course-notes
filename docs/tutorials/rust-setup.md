@@ -68,9 +68,9 @@ git push --set-upstream origin main
 
     The `git push --set-upstream origin main` command pushes the main branch to the remote repository named origin.
 
-    - The --set-upstream flag establishes a connection between your local main branch and the remote branch, allowing future pushes and pulls to be done simply with git push or git pull without needing to specify the branch name.
+    - The `--set-upstream` flag establishes a connection between your local main branch and the remote branch, allowing future pushes and pulls to be done simply with git push or git pull without needing to specify the branch name.
 
-        - -u is an abreviation for the `--set-upstream` flag
+        - `-u` is an abreviation for the `--set-upstream` flag
 
 (4) Back in your web browser, refresh your GitHub repository to see that the same commit you made locally has now been pushed to remote. 
 
@@ -95,12 +95,12 @@ The `devcontainer.json` file defines the configuration for your development envi
 
 * **customizations:** Adds useful configurations to VS Code, like installing the Rust extension. When you search for VSCode extensions on the marketplace, you will find the string identifier of each extension in its sidebar. Adding extensions here ensures other developers on your project have them installed in their dev containers automatically.
 
-* **postCreateCommand:** A command to run after the container is created. In our case, there is nothing to be run after.
+* **postCreateCommand:** Commands to be executed after the container is created. In our case, there is nothing to be run after creation.
 
 ```json
 {
-"name": "Rust Tutorial"
-"image": "mcr.microsoft.com/devcontainers/rust:latest"
+"name": "Rust Tutorial",
+"image": "mcr.microsoft.com/devcontainers/rust:latest",
 "customizations": {
 	"vscode:": {
 		"settings":{},
@@ -117,9 +117,10 @@ Reopen the project in the container by pressing `Ctrl+Shift+P`  (or `Cmd+Shift+P
 
 - This may take a few minutes while the image is downloaded and the requirements are installed.
 
-Once your dev container setup completes, close the current terminal tab (trash can), open a new terminal pane within VSCode, and try running `rustc --version` to see your dev container is running a recent version of Rust without much effort! 
+Once your dev container setup completes, close the current terminal tab (trash can), open a new terminal pane within VSCode, and try running `rustc --version` to that your dev container is running an updated version of Rust.
 
-- (As of this writing: DAFIUHODFHJf)
+!!! note "`rustc --version`"
+	As of January 2025 `rustc 1.83.0` is the most up-to-date version of Rust.
 
 ## Part 3. Creating a Rust Binary File and Building it 
 
@@ -134,30 +135,37 @@ cd hello_cargo_COMP423
 !!! note "`--vcs none`"
     The `--vcs none` flag tells Cargo not to create a new git repository for your project. Be sure to use this if you want to manage version control yourself or if there is already a repository existing for your project.
 
-Go into the `hello_cargo_COMP423` directory and list all the files (`ls -la`). You’ll see that Cargo has generated two files and one directory for us: a `Cargo.toml` file and a `src` directory with a `main.rs` file inside.
+Go into the `hello_cargo_COMP423` directory and list all the files (`ls`). You’ll see that Cargo has generated two files and one directory for us: a `Cargo.toml` file and a `src` directory with a `main.rs` file inside.
 
 (3) Open `src/main.rs` and take a look:
 ```rs
-fn main() { println!("Hello, world!"); }
+fn main() { 
+	println!("Hello, world!"); 
+}
 ```
 Change the text to the following:
 ```rs
-fn main() { println!("Hello COMP423!"); }
+fn main() { 
+	println!("Hello COMP423!"); 
+}
 ```
 (4) Go back to the terminal, and compile the [binary crate](https://doc.rust-lang.org/book/ch07-01-packages-and-crates.html) using
 ```sh
 $ cargo build
-	Compiling hello_world v0.1.0 (file:///path/to/package/hello_world)
+	Compiling hello_cargo_COMP423 v0.1.0 (workspace/rust-tutorial/hello_cargo_COMP423)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 3.90s
 ```
 And then run it using
 ```sh
-$ ./target/debug/hello_cargo 
+$ ./target/debug/hello_cargo_COMP423
 # or .\target\debug\hello_cargo.exe on Windows Hello, world!
+Hello COMP423!
 ```
 (5) Alternatively, you can also use `cargo run` to compile the code and run the resultant executable all in one command:
 ```sh
 $ cargo run 
-Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs Running `target/debug/hello_cargo` 
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.10s
+    Running `target/debug/hello_cargo_COMP423`
 Hello COMP423!
 ```
 !!! note "Cargo Run"
