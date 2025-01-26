@@ -2,17 +2,26 @@
 * Primary author: [Ben Edwards](https://github.com/bkedwards)
 * Reviewer: [Abiye Berhanu](https://github.com/aberhanu)
 
+## Prerequisites
+1. `GitHub`: Make sure you have set up a [GitHub account](https://github.com/).
+2. `Git`: Install [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
+3. `Visual Studio Code`: Download VS Code [here](https://code.visualstudio.com/).
+4. `Docker`: Install [Docker](https://www.docker.com/products/docker-desktop/) so you can run the dev container.
+
 ## Part 1. Project Setup: Creating the Repository
 
 ### Step 1. Create a Local Directory and Initialize Git
 
 (A) Open your terminal or command prompt
 
-(B) Create a new directory for your project. (Note: Of course, if you'd like to organize this tutorial somewhere else on your machine, go ahead and change into that parent directory first. By default this will be in your user's home directory.):
+(B) Create a new directory for your project.
 ```sh
 mkdir rust-tutorial
 cd rust-tutorial
-```
+``` 
+!!! note 
+    Of course, if you'd like to organize this tutorial somewhere else on your machine, go ahead and change into that parent directory first. By default this will be in your user's home directory.
+
 (C) Initialize a new Git repository
 ```sh
 git init
@@ -47,15 +56,25 @@ git remote add origin https://github.com/<your-username>/rust-tutorial.git
 ```
 Replace `<your-username` with your GitHub username
 
-(2) Check your default branch name with the subcommand `git branch`. If it's not `main`, rename it to `main` with the following command: `git branch -M main`. Old versions of `git` choose the name `master` for the primary branch, but these days `main` is the standard primary branch name.
+(2) Check your default branch name with the subcommand `git branch`. If it's not `main`, rename it to `main` with the following command: `git branch -M main`. 
+!!!note
+    Old versions of `git` choose the name `master` for the primary branch, but these days `main` is the standard primary branch name.
 
 (3) Push your local commits to the GitHub repository
 ```sh
 git push --set-upstream origin main
 ```
-//Insert admonition about the --set-upstream Flag//
+!!! note "Understanding the --set-upstream Flag"
 
-(4) Back in your web browser, refresh your GitHub repository to see that the same commit you made locally has now been pushed to remote. You can use `git log` locally to see the commit ID and message which should match the ID of the most recent commit on GitHub. This is the result of pushing your changes to your remote repository.
+    The `git push --set-upstream origin main` command pushes the main branch to the remote repository named origin.
+
+    - The --set-upstream flag establishes a connection between your local main branch and the remote branch, allowing future pushes and pulls to be done simply with git push or git pull without needing to specify the branch name.
+
+        - -u is an abreviation for the `--set-upstream` flag
+
+(4) Back in your web browser, refresh your GitHub repository to see that the same commit you made locally has now been pushed to remote. 
+
+- You can use `git log` locally to see the commit ID and message which should match the ID of the most recent commit on GitHub. This is the result of pushing your changes to your remote repository.
 
 ## Part 2. Setting up the Development Environment
 ### Step 1. Add Development Container Configuration
@@ -94,9 +113,13 @@ The `devcontainer.json` file defines the configuration for your development envi
 
 ### Step 5. Reopen the Project in a VSCode Dev Container
 
-Reopen the project in the container by pressing `Ctrl+Shift+P`  (or `Cmd+Shift+P` on Mac), typing "Dev Containers: Reopen in Container," and selecting the option. This may take a few minutes while the image is downloaded and the requirements are installed.
+Reopen the project in the container by pressing `Ctrl+Shift+P`  (or `Cmd+Shift+P` on Mac), typing "Dev Containers: Reopen in Container," and selecting the option. 
 
-Once your dev container setup completes, close the current terminal tab (trash can), open a new terminal pane within VSCode, and try running `rustc --version` to see your dev container is running a recent version of Rust without much effort! (As of this writing: DAFIUHODFHJf)
+- This may take a few minutes while the image is downloaded and the requirements are installed.
+
+Once your dev container setup completes, close the current terminal tab (trash can), open a new terminal pane within VSCode, and try running `rustc --version` to see your dev container is running a recent version of Rust without much effort! 
+
+- (As of this writing: DAFIUHODFHJf)
 
 ## Part 3. Creating a Rust Binary File and Building it 
 
@@ -108,7 +131,8 @@ cargo new hello_cargo_COMP423 --vcs none
 cd hello_cargo_COMP423
 ```
 
-//Insert Admonition about (use the flag that does not create a new `git` repository automatically on your behalf: `--vcs none` (Version Control System))//
+!!! note "`--vcs none`"
+    The `--vcs none` flag tells Cargo not to create a new git repository for your project. Be sure to use this if you want to manage version control yourself or if there is already a repository existing for your project.
 
 Go into the `hello_cargo_COMP423` directory and list all the files (`ls -la`). You’ll see that Cargo has generated two files and one directory for us: a `Cargo.toml` file and a `src` directory with a `main.rs` file inside.
 
@@ -136,7 +160,12 @@ $ cargo run
 Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs Running `target/debug/hello_cargo` 
 Hello COMP423!
 ```
-//Insert an admonition about how `cargo run` is similar to `cargo build` but is more convenient than having to remember to run `cargo build` and then execute the whole path of the binary. Most Rust developers prefer to use `cargo run`. //
+!!! note "Cargo Run"
+    `cargo run` is similar to `cargo build` but is more convenient as you don't have to run `cargo build` and then execute the whole path of the binary.
+
+    - Most Rust developers prefer to use `cargo run`.
 
 ##Conclusion
-Congratulations! You’ve successfully created a simple Hello World program in the Rust language and configured a development environment. These are important foundational skills that can be applied to many open-source and professional projects, and can help kick-start your illustrious Rust career! 
+**Congratulations!**
+
+You’ve successfully created a simple Hello World program in the Rust language and configured a development environment. These are important foundational skills that can be applied to many open-source and professional projects, and can help kick-start your illustrious Rust career! 
