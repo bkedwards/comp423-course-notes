@@ -54,7 +54,7 @@ git commit -m "Initial commit with README"
 ```sh
 git remote add origin https://github.com/<your-username>/rust-tutorial.git
 ```
-Replace `<your-username` with your GitHub username
+Replace `<your-username>` with your GitHub username
 
 (2) Check your default branch name with the subcommand `git branch`. If it's not `main`, rename it to `main` with the following command: `git branch -M main`. 
 !!!note
